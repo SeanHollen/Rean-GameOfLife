@@ -27,37 +27,37 @@ function intializeNext() {
     next.addEventListener("click", function() { step(); })
 }
 
-function checkIfActive(index) {
+function shouldBeActive(index) {
     if (index > 0 && index < width * height) {
-        return children[index].classList.contains("active");
+        return prevState[index];
     }
     return false;
 }
 
 function activeNeighbors(index) {
     let count = 0;
-    if (checkIfActive(index - 1)) {
+    if (shouldBeActive(index - 1)) {
         count++;
     }
-    if (checkIfActive(index + 1)) {
+    if (shouldBeActive(index + 1)) {
         count++;
     }
-    if (checkIfActive(index - width)) {
+    if (shouldBeActive(index - width)) {
         count++;
     }
-    if (checkIfActive(index - width + 1)) {
+    if (shouldBeActive(index - width + 1)) {
         count++;
     }
-    if (checkIfActive(index - width - 1)) {
+    if (shouldBeActive(index - width - 1)) {
         count++;
     }
-    if (checkIfActive(index + width)) {
+    if (shouldBeActive(index + width)) {
         count++;
     }
-    if (checkIfActive(index + width + 1)) {
+    if (shouldBeActive(index + width + 1)) {
         count++;
     }
-    if (checkIfActive(index + width - 1)) {
+    if (shouldBeActive(index + width - 1)) {
         count++;
     }
     return count; 
@@ -66,18 +66,29 @@ function activeNeighbors(index) {
 
 
 function step() {
+    this.prevState = []; 
+    for (let i = 0; i < width * height; i++) {
+        if (children[i].classList.contains("active")) {
+            prevState.push(true); 
+        } else {
+            prevState.push(false); 
+        }
+    }
     for (let i = 0; i < children.length; i++) {
         let current = children[i];
+        let isActive = this.prevState[i]; 
         let countNeighbors = activeNeighbors(i);
-        console.log(countNeighbors); 
-        if ((countNeighbors > 1) && (countNeighbors < 4)) {
-            current.classList.add("active");
-            console.log(countNeighbors < 4); 
-            console.log("setting active"); 
+
+        if (isActive) {
+            if ((countNeighbors < 2) || (countNeighbors >= 4)) {
+                current.classList.remove("active");
+            } 
         } else {
-            current.classList.remove("active");
-            console.log("removing active"); 
+            if (countNeighbors == 3) {
+                current.classList.add("active"); 
+            }
         }
+
     }
 }
 
