@@ -1,14 +1,14 @@
 #grid {
     width: 1000px;
-    height: 400px;
+    height: 1000px;
     background-color: black;
 }
 
 .grid-element {
     background-color: gray;
     margin: .05%;
-        width: 9%;
-    height: 9%;
+    width: .9%;
+    height: .9%;
     float: left;
 }
 

@@ -1,7 +1,7 @@
 let grid = document.getElementById("grid");
 let start = document.getElementById("start");
-const width = 10;
-const height = 10;
+const width = 100;
+const height = 100;
 intializeGrid();
 let children = grid.childNodes;
 intializeNext(); 
@@ -18,7 +18,7 @@ function randomActive() {
 function intializeStart() {
     start = document.getElementById("Start");
     start.addEventListener("click", function() {
-        setInterval(step, 1000);
+        setInterval(step, 100);
     })
 }
 
