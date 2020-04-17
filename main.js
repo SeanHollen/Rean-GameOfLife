@@ -65,6 +65,9 @@ function intializeGrid() {
             let newCell = document.createElement("div");
             newCell.classList.add("grid-element");
             newCell.i = h * w + w;
+            newCell.addEventListener("click", function() {
+                newCell.classList.toggle("active");
+            })
             grid.appendChild(newCell);
         }
     }
