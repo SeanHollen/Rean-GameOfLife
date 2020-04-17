@@ -4,9 +4,8 @@ const width = 10;
 const height = 10;
 intializeGrid();
 let children = grid.childNodes;
-randomActive();
-intializeStart(); 
 intializeNext(); 
+intializeStart(); 
 
 function randomActive() {
     const RANDOMS = 50;
@@ -71,11 +70,13 @@ function step() {
         let current = children[i];
         let countNeighbors = activeNeighbors(i);
         console.log(countNeighbors); 
-        if (countNeighbors => 2 && countNeighbors < 4) {
+        if ((countNeighbors > 1) && (countNeighbors < 4)) {
             current.classList.add("active");
-        }
-        else {
+            console.log(countNeighbors < 4); 
+            console.log("setting active"); 
+        } else {
             current.classList.remove("active");
+            console.log("removing active"); 
         }
     }
 }
