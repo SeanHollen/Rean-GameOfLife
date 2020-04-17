@@ -5,6 +5,8 @@ const height = 10;
 intializeGrid();
 let children = grid.childNodes;
 randomActive();
+intializeStart(); 
+intializeNext(); 
 
 function randomActive() {
     const RANDOMS = 50;
@@ -15,9 +17,15 @@ function randomActive() {
 }
 
 function intializeStart() {
+    start = document.getElementById("Start");
     start.addEventListener("click", function() {
         setInterval(step, 1000);
     })
+}
+
+function intializeNext() {
+    next = document.getElementById("Next")
+    next.addEventListener("click", function() { step(); })
 }
 
 function checkIfActive(index) {
@@ -38,9 +46,22 @@ function activeNeighbors(index) {
     if (checkIfActive(index - width)) {
         count++;
     }
+    if (checkIfActive(index - width + 1)) {
+        count++;
+    }
+    if (checkIfActive(index - width - 1)) {
+        count++;
+    }
     if (checkIfActive(index + width)) {
         count++;
     }
+    if (checkIfActive(index + width + 1)) {
+        count++;
+    }
+    if (checkIfActive(index + width - 1)) {
+        count++;
+    }
+    return count; 
 }
 
 
@@ -49,11 +70,12 @@ function step() {
     for (let i = 0; i < children.length; i++) {
         let current = children[i];
         let countNeighbors = activeNeighbors(i);
-        if (countNeighbors < 2 || countNeighbors >= 4) {
-            current.classList.remove("active");
+        console.log(countNeighbors); 
+        if (countNeighbors => 2 && countNeighbors < 4) {
+            current.classList.add("active");
         }
         else {
-            current.classList.add("active");
+            current.classList.remove("active");
         }
     }
 }
