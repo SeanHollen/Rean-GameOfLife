@@ -5,10 +5,13 @@
 }
 
 .grid-element {
-    background-color: purple;
-    color: purple;
+    background-color: gray;
     margin: .05%;
         width: 9%;
     height: 9%;
     float: left;
+}
+
+.active {
+    background-color: yellow;
 }
