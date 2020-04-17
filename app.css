@@ -1,0 +1,14 @@
+#grid {
+    width: 1000px;
+    height: 400px;
+    background-color: black;
+}
+
+.grid-element {
+    background-color: purple;
+    color: purple;
+    margin: .05%;
+        width: 9%;
+    height: 9%;
+    float: left;
+}
