@@ -1,11 +1,12 @@
 let grid = document.getElementById("grid");
 let start = document.getElementById("start");
 const width = 100;
-const height = 100;
+const height = 50;
 intializeGrid();
-let children = grid.childNodes;
-intializeNext(); 
-intializeStart(); 
+let children = grid.childNodes; 
+initNext(); 
+initStart(); 
+initClear(); 
 
 function randomActive() {
     const RANDOMS = 50;
@@ -15,7 +16,7 @@ function randomActive() {
     }
 }
 
-function intializeStart() {
+function initStart() {
     this.on = false; 
     start = document.getElementById("Start");
     start.addEventListener("click", function() {
@@ -34,7 +35,18 @@ function intializeStart() {
     })
 }
 
-function intializeNext() {
+function initClear() {
+    clear = document.getElementById("Clear");
+    clear.addEventListener("click", function() {
+        for (let i = 0; i < children.length; i++) {
+            if (children[i].classList.contains("active")) {
+                children[i].classList.remove("active"); 
+            }
+        }
+    })
+}
+
+function initNext() {
     next = document.getElementById("Next")
     next.addEventListener("click", function() { step(); })
 }
