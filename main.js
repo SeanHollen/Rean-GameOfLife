@@ -16,9 +16,21 @@ function randomActive() {
 }
 
 function intializeStart() {
+    this.on = false; 
     start = document.getElementById("Start");
     start.addEventListener("click", function() {
-        setInterval(step, 100);
+        console.log(this.on); 
+        if (this.on) {
+            console.log(1); 
+            clearInterval(this.interval);
+            this.on = false; 
+            start.textContent = "Start"; 
+        } else {
+            console.log(2); 
+            this.interval = setInterval(step, 100);
+            this.on = true; 
+            start.textContent = "Stop"; 
+        }
     })
 }
 
