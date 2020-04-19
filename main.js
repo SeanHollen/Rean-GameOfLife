@@ -126,6 +126,11 @@ function intializeGrid() {
             newCell.addEventListener("click", function() {
                 newCell.classList.toggle("active");
             })
+            newCell.addEventListener("mousemove", function(e) {
+                if(e.buttons == 1) {
+                    newCell.classList.add("active");
+                }
+            })
             grid.appendChild(newCell);
         }
     }
